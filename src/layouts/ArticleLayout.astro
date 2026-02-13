@@ -1,0 +1,49 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import EndMark from '../components/EndMark.astro';
+
+interface Props {
+  title: string;
+  author: string;
+  authorBio?: string;
+  issueNumber: number;
+  issueTitle: string;
+  section: string;
+  accentColor?: string;
+}
+
+const {
+  title,
+  author,
+  authorBio,
+  issueNumber,
+  issueTitle,
+  section,
+  accentColor = '#800020'
+} = Astro.props;
+---
+<BaseLayout title={title} issueAccent={accentColor}>
+  <article class="article-page content-column">
+
+    <header class="article-header">
+      <p class="meta">{section} — Issue {issueNumber}: {issueTitle}</p>
+      <h1 class="article-page-title">{title}</h1>
+      <p class="author">by {author}</p>
+      <div class="rule-heavy" role="presentation"></div>
+    </header>
+
+    <div class="article-body">
+      <slot />
+    </div>
+
+    <EndMark />
+
+    {authorBio && (
+      <aside class="author-bio">
+        <div class="rule-light" role="presentation"></div>
+        <p style="margin-top: var(--space-md);"><strong>{author}</strong> {authorBio}</p>
+      </aside>
+    )}
+
+  </article>
+</BaseLayout>

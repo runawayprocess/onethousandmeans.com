@@ -1,0 +1,15 @@
+---
+// PullQuote: Display quote with maroon left bar
+interface Props {
+  attribution?: string;
+}
+const { attribution } = Astro.props;
+---
+<aside class="pull-quote">
+  <div class="quote-text">
+    <slot />
+  </div>
+  {attribution && (
+    <p class="quote-attribution">&mdash; {attribution}</p>
+  )}
+</aside>

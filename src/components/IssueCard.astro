@@ -1,0 +1,26 @@
+---
+// IssueCard: Archive "book spine" card for past issues
+interface Props {
+  issueNumber: number;
+  issueTitle: string;
+  accentColor: string;
+  href?: string;
+}
+const { issueNumber, issueTitle, accentColor, href } = Astro.props;
+---
+<div class="issue-card" style={`--card-accent: ${accentColor}`}>
+  <div class="issue-card-spine"></div>
+  <div class="issue-card-content">
+    {href ? (
+      <a href={href} style="text-decoration: none; color: inherit; display: flex; align-items: baseline; gap: var(--space-md);">
+        <span class="issue-card-number meta">Issue {issueNumber}</span>
+        <span class="issue-card-title">{issueTitle}</span>
+      </a>
+    ) : (
+      <>
+        <span class="issue-card-number meta">Issue {issueNumber}</span>
+        <span class="issue-card-title">{issueTitle}</span>
+      </>
+    )}
+  </div>
+</div>

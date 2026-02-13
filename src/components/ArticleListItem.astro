@@ -1,0 +1,22 @@
+---
+// ArticleListItem: Single article entry in table of contents
+interface Props {
+  title: string;
+  author: string;
+  description: string;
+  href?: string;
+  isComingSoon?: boolean;
+}
+const { title, author, description, href, isComingSoon = true } = Astro.props;
+---
+<article class="article-list-item">
+  {href && !isComingSoon ? (
+    <a href={href} class="article-link">
+      <h3 class="article-title">{title}</h3>
+    </a>
+  ) : (
+    <h3 class="article-title">{title}</h3>
+  )}
+  <p class="author">by {author}</p>
+  <p class="article-description">{description}</p>
+</article>

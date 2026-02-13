@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IssueTableOfContents from '../components/IssueTableOfContents.astro';
+import IssueCard from '../components/IssueCard.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import { getCurrentIssue, getPublishedIssues } from '../data/issues';
+
+const currentIssue = getCurrentIssue();
+const publishedIssues = getPublishedIssues();
+const isComingSoon = currentIssue && !currentIssue.published;
+
+// Query articles for the current issue (only when published)
+let essays: any[] = [];
+let reviews: any[] = [];
+let conversations: any[] = [];
+
+if (currentIssue && currentIssue.published) {
+  const allArticles = await getCollection('issues', ({ data }) => !data.draft && data.issueNumber === currentIssue.number);
+  const toArticle = (a: any) => ({
+    title: a.data.title,
+    author: a.data.author,
+    description: a.data.description,
+    href: `/issue-${a.data.issueNumber}/${a.id.includes('/') ? a.id.split('/').pop() : a.id}`,
+  });
+  essays = allArticles.filter(a => a.data.section === 'essays').sort((a, b) => a.data.order - b.data.order).map(toArticle);
+  reviews = allArticles.filter(a => a.data.section === 'reviews').sort((a, b) => a.data.order - b.data.order).map(toArticle);
+  conversations = allArticles.filter(a => a.data.section === 'conversations').sort((a, b) => a.data.order - b.data.order).map(toArticle);
+}
+---
+<BaseLayout
+  title="Home"
+  issueAccent={currentIssue?.accentColor || '#800020'}
+>
+  <div class="content-wide">
+
+    {isComingSoon ? (
+      <section class="issue-toc">
+        <header class="issue-header">
+          <div class="issue-title-row">
+            <svg class="issue-badge-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label={`Issue ${currentIssue!.number}`}>
+              <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="3"/>
+              <circle cx="60" cy="60" r="48" fill="currentColor"/>
+              <text x="60" y="60" text-anchor="middle" dy="0.28em" fill="#FFFFFF" font-family="'Playfair Display', Georgia, serif" font-weight="900" font-style="italic" font-size="72">{currentIssue!.number}</text>
+            </svg>
+            <h2 class="issue-title">{currentIssue!.title}</h2>
+          </div>
+          <p class="coming-soon"><em>Coming Soon</em></p>
+        </header>
+
+        <div class="toc-section">
+          <h3 class="section-header">Essays</h3>
+        </div>
+
+        <div class="toc-section">
+          <h3 class="section-header">Reviews</h3>
+        </div>
+
+        <div class="toc-section">
+          <h3 class="section-header">Conversations</h3>
+        </div>
+      </section>
+    ) : currentIssue ? (
+      <IssueTableOfContents
+        issueNumber={currentIssue.number}
+        issueTitle={currentIssue.title}
+        essays={essays}
+        reviews={reviews}
+        conversations={conversations}
+        isComingSoon={false}
+      />
+    ) : null}
+
+    {publishedIssues.length > 1 && (
+      <>
+        <SectionDivider weight="double" />
+        <section class="archive-section">
+          <h2 class="section-header">Archive</h2>
+          {publishedIssues
+            .filter(i => i.number !== currentIssue?.number)
+            .reverse()
+            .map(issue => (
+              <IssueCard
+                issueNumber={issue.number}
+                issueTitle={issue.title}
+                accentColor={issue.accentColor}
+                href={`/${issue.slug}`}
+              />
+            ))
+          }
+        </section>
+      </>
+    )}
+
+  </div>
+</BaseLayout>

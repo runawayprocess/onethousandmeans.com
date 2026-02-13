@@ -1,0 +1,56 @@
+---
+// IssueTableOfContents: Full issue display with three sections
+import SectionDivider from './SectionDivider.astro';
+import ArticleListItem from './ArticleListItem.astro';
+
+interface Article {
+  title: string;
+  author: string;
+  description: string;
+  href?: string;
+}
+
+interface Props {
+  issueNumber: number;
+  issueTitle: string;
+  essays?: Article[];
+  reviews?: Article[];
+  conversations?: Article[];
+  isComingSoon?: boolean;
+}
+
+const {
+  issueNumber,
+  issueTitle,
+  essays = [],
+  reviews = [],
+  conversations = [],
+  isComingSoon = true
+} = Astro.props;
+
+// Track which sections have content to know where to place dividers
+const sections = [
+  { key: 'essays', label: 'Essays', items: essays },
+  { key: 'reviews', label: 'Reviews', items: reviews },
+  { key: 'conversations', label: 'Conversations', items: conversations },
+].filter(s => s.items.length > 0);
+---
+<section class="issue-toc">
+  <header class="issue-header">
+    <p class="meta">Issue {issueNumber}</p>
+    <h2 class="issue-title">{issueTitle}</h2>
+    {isComingSoon && <p class="coming-soon">Coming Soon</p>}
+  </header>
+
+  {sections.map((section, index) => (
+    <>
+      {index > 0 && <SectionDivider symbol="§" />}
+      <div class="toc-section">
+        <h3 class="section-header">{section.label}</h3>
+        {section.items.map(article => (
+          <ArticleListItem {...article} isComingSoon={isComingSoon} />
+        ))}
+      </div>
+    </>
+  ))}
+</section>

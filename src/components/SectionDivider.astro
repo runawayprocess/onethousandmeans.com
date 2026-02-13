@@ -1,0 +1,15 @@
+---
+// SectionDivider: Heavy horizontal rules with optional centered symbol
+interface Props {
+  symbol?: string;
+  weight?: 'heavy' | 'medium' | 'light' | 'double';
+}
+const { symbol, weight = 'heavy' } = Astro.props;
+---
+{symbol ? (
+  <div class="rule-section" role="presentation">
+    <span class="symbol">{symbol}</span>
+  </div>
+) : (
+  <div class={`rule-${weight}`} role="presentation"></div>
+)}

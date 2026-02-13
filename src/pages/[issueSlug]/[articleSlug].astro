@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import ConversationLayout from '../../layouts/ConversationLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('issues', ({ data }) => !data.draft);
+  return articles.map(article => {
+    // Extract just the filename slug from the full ID (e.g., "issue-1/sample-essay" -> "sample-essay")
+    const slug = article.id.includes('/')
+      ? article.id.split('/').pop()!
+      : article.id;
+    return {
+      params: {
+        issueSlug: `issue-${article.data.issueNumber}`,
+        articleSlug: slug,
+      },
+      props: { article },
+    };
+  });
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+
+const isConversation = article.data.layout === 'conversation';
+---
+{isConversation ? (
+  <ConversationLayout
+    title={article.data.title}
+    author={article.data.author}
+    interviewee={article.data.interviewee}
+    issueNumber={article.data.issueNumber}
+    issueTitle={article.data.issueTitle}
+    accentColor={article.data.accentColor}
+  >
+    <Content />
+  </ConversationLayout>
+) : (
+  <ArticleLayout
+    title={article.data.title}
+    author={article.data.author}
+    authorBio={article.data.authorBio}
+    issueNumber={article.data.issueNumber}
+    issueTitle={article.data.issueTitle}
+    section={article.data.section}
+    accentColor={article.data.accentColor}
+  >
+    <Content />
+  </ArticleLayout>
+)}

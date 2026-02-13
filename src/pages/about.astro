@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="About">
+  <div class="about-page">
+
+    <section class="about-epigraph">
+      <div class="dialogue">
+        <p><span class="speaker ariel">Ariel:</span> No, I've come on my own. I came to warn you. Prospero is planning horrible acts of revenge against you. I thought it my duty to alert you.</p>
+        <p><span class="speaker caliban">Caliban:</span> I'm ready for him.</p>
+        <p><span class="speaker ariel">Ariel:</span> Poor Caliban, you're doomed. You know that you aren't the stronger, you'll never be the stronger. What good will it do you to struggle?</p>
+        <p><span class="speaker caliban">Caliban:</span> And what about you? What good has your obedience done you, your Uncle Tom patience and your sucking up to him. The man's just getting more demanding and despotic day by day.</p>
+        <p><span class="speaker ariel">Ariel:</span> Well, I've at least achieved one thing: he's promised me my freedom. In the distant future, of course, but it's the first time he's actually committed himself.</p>
+        <p><span class="speaker caliban">Caliban:</span> Talk's cheap! He'll promise you a thousand times and take it back a thousand times. Anyway, tomorrow doesn't interest me. What I want is <em class="caliban-shout">"Freedom now!"</em></p>
+        <p><span class="speaker ariel">Ariel:</span> Okay. But you know you're not going to get it out of him "now", and that he's stronger than you are. I'm in a good position to know just what he's got in his arsenal.</p>
+        <p><span class="speaker caliban">Caliban:</span> The stronger? How do you know that? Weakness always has a thousand means and cowardice is all that keeps us from listing them.</p>
+      </div>
+    </section>
+
+    <div class="rule-heavy" role="presentation"></div>
+
+    <section class="about-mission">
+      <p class="mission-statement"><strong><em>One Thousand Means</em></strong> is a publication of the Promethean <span style="color: var(--issue-accent);">left</span>.</p>
+      <div class="about-values">
+        <p>We are in favor of <strong>growth</strong>, <strong>plenty</strong>, <strong>dynamism</strong>, <strong>emancipation</strong>, <strong>humanity</strong>, and <strong>equality</strong>.</p>
+        <p>We are against <strong>stagnation</strong>, <strong>scarcity</strong>, <strong>cowardice</strong>, <strong>suffering</strong>, <strong>avarice</strong>, and <strong>domination</strong>.</p>
+      </div>
+    </section>
+
+    <div class="rule-medium" role="presentation"></div>
+
+    <section class="about-masthead">
+      <div class="masthead-group editors">
+        <p class="masthead-name">Zachary Jones</p>
+        <p class="masthead-role">Co-Editor-in-Chief</p>
+      </div>
+      <div class="masthead-group editors">
+        <p class="masthead-name">Alexei Gannon</p>
+        <p class="masthead-role">Co-Editor-in-Chief</p>
+      </div>
+      <div class="masthead-group staff">
+        <p class="masthead-role staff-header">Staff Writers</p>
+        <p class="masthead-name">June Kur</p>
+        <p class="masthead-name">Wade Rodgers</p>
+        <p class="masthead-name">Nick Levytsky</p>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .about-page {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+
+  /* === EPIGRAPH / DIALOGUE === */
+  .about-epigraph {
+    margin-bottom: var(--space-lg);
+  }
+
+  .dialogue p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0.7rem;
+    text-indent: 0;
+  }
+
+  .speaker {
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .speaker.caliban {
+    color: var(--issue-accent);
+  }
+
+  .speaker.ariel {
+    color: var(--color-muted);
+  }
+
+  .caliban-shout {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  /* === MISSION === */
+  .about-mission {
+    text-align: center;
+    padding: var(--space-lg) 0;
+  }
+
+  .mission-statement {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-md);
+    text-shadow: var(--letterpress-shadow);
+  }
+
+  .about-values p {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+
+  .about-values strong {
+    color: var(--color-text);
+  }
+
+  /* === MASTHEAD === */
+  .about-masthead {
+    text-align: center;
+    padding: var(--space-lg) 0 var(--space-md);
+  }
+
+  .masthead-group {
+    margin-bottom: var(--space-md);
+  }
+
+  .masthead-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0;
+    text-shadow: var(--letterpress-shadow);
+  }
+
+  .masthead-role {
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0;
+  }
+
+  .staff-header {
+    margin-bottom: 0.5rem;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: var(--text-xs);
+    font-weight: 400;
+  }
+
+  .staff .masthead-name {
+    font-size: var(--text-base);
+    font-weight: 400;
+    font-family: var(--font-body);
+    text-shadow: none;
+    margin-bottom: 0.15rem;
+  }
+</style>

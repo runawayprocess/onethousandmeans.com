@@ -1,0 +1,58 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  issueAccent?: string;
+}
+
+const {
+  title,
+  description = 'A journal of essays, reviews, and conversations.',
+  issueAccent = '#800020'
+} = Astro.props;
+
+const fullTitle = title === 'Home'
+  ? 'onethousandm∃∀ns'
+  : `${title} | onethousandm∃∀ns`;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{fullTitle}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="onethousandm∃∀ns" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Per-issue accent color -->
+  <style set:html={`:root { --issue-accent: ${issueAccent}; }`}></style>
+</head>
+<body>
+  <div class="page">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</body>
+</html>
