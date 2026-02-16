@@ -46,6 +46,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
 
+    <p class="logo-credit"><em>Logo design by Jack McKernan</em></p>
+
   </div>
 </BaseLayout>
 
@@ -153,5 +155,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-family: var(--font-body);
     text-shadow: none;
     margin-bottom: 0.15rem;
+  }
+
+  .logo-credit {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    margin-top: var(--space-sm);
   }
 </style>

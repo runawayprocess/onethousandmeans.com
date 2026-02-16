@@ -587,12 +587,12 @@ hr {
 }
 
 .issue-header .issue-title {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: inherit;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   text-shadow: var(--letterpress-shadow);
-  letter-spacing: -0.03em;
+  letter-spacing: 0.05em;
   margin-bottom: 0;
   margin-top: 0;
 }
