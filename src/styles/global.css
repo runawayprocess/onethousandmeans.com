@@ -384,7 +384,7 @@ hr {
   color: var(--color-muted);
 }
 
-/* Section headers — red text on full-width yellow bar with rounded edges */
+/* Section headers — red text on full-width yellow bar with rounded edges + dashed bottom rule */
 .section-header {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -398,6 +398,7 @@ hr {
   display: block;
   border: none;
   border-radius: 6px;
+  border-bottom: 2px dashed var(--color-rule);
 }
 
 /* Sunburst */
@@ -601,7 +602,7 @@ hr {
   display: flex;
   align-items: baseline;
   gap: 0.15em;
-  font-size: var(--text-6xl);
+  font-size: var(--text-5xl);
 }
 
 .issue-badge-svg {
