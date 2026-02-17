@@ -11,7 +11,7 @@ export const issues: Issue[] = [
     number: 1,
     title: 'ABUNDANCE',
     slug: 'issue-1',
-    accentColor: '#FF0000',
+    accentColor: '#FF2A4F',
     published: false,
   },
 ];

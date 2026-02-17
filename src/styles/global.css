@@ -12,11 +12,11 @@
   --color-bg: #FFFFFF;
   --color-text: #000000;
   --color-text-secondary: #333333;
-  --color-accent: #FF0000;
-  --color-accent-light: #FF3333;
-  --color-accent-dark: #CC0000;
-  --color-secondary: #F0E6A0;
-  --color-secondary-light: #F5EDB8;
+  --color-accent: #FF2A4F;
+  --color-accent-light: #FF4D6D;
+  --color-accent-dark: #D91E3F;
+  --color-secondary: #EBCF7A;
+  --color-secondary-light: #F0D994;
   --color-rule: #000000;
   --color-rule-light: #CCCCCC;
   --color-muted: #666666;
@@ -98,6 +98,18 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text);
   background-color: var(--color-bg);
+}
+
+/* Custom ∴ cursor — therefore symbol */
+/* Default: all three dots black */
+*, *::before, *::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='3' fill='%23000000'/%3E%3Ccircle cx='6' cy='18' r='3' fill='%23000000'/%3E%3Ccircle cx='18' cy='18' r='3' fill='%23000000'/%3E%3C/svg%3E") 12 12, auto;
+}
+
+/* Hover on clickable: top dot red, bottom two dots yellow */
+a, button, [role="button"], input[type="submit"], input[type="button"],
+label, select, summary, [onclick], .logo-link, .site-nav a, .footer-nav a {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='3' fill='%23FF2A4F'/%3E%3Ccircle cx='6' cy='18' r='3' fill='%23EBCF7A'/%3E%3Ccircle cx='18' cy='18' r='3' fill='%23EBCF7A'/%3E%3C/svg%3E") 12 12, pointer;
 }
 
 /* Selection highlight — desaturated lemon-pastel yellow */
@@ -372,7 +384,7 @@ hr {
   color: var(--color-muted);
 }
 
-/* Section headers — red text in a yellow tab */
+/* Section headers — red text on full-width yellow bar with rounded edges */
 .section-header {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -381,10 +393,11 @@ hr {
   letter-spacing: 0.12em;
   color: var(--issue-accent);
   margin-bottom: var(--space-md);
-  padding: 0.25em 0.6em;
+  padding: 0.35em 0.8em;
   background-color: var(--color-secondary);
-  display: inline-block;
+  display: block;
   border: none;
+  border-radius: 6px;
 }
 
 /* Sunburst */
@@ -610,11 +623,6 @@ hr {
   letter-spacing: 0.05em;
   margin-bottom: 0;
   margin-top: 0;
-  background-color: var(--color-secondary);
-  padding: 0.05em 0.15em;
-  display: inline;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
 }
 
 .coming-soon {
