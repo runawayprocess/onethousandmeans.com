@@ -8,13 +8,15 @@
 
 /* === DESIGN TOKENS === */
 :root {
-  /* Colors */
+  /* Colors — Swiss red + desaturated lemon-pastel yellow */
   --color-bg: #FFFFFF;
   --color-text: #000000;
   --color-text-secondary: #333333;
-  --color-accent: #800020;
-  --color-accent-light: #9A1B3A;
-  --color-accent-dark: #5C0018;
+  --color-accent: #FF0000;
+  --color-accent-light: #FF3333;
+  --color-accent-dark: #CC0000;
+  --color-secondary: #F0E6A0;
+  --color-secondary-light: #F5EDB8;
   --color-rule: #000000;
   --color-rule-light: #CCCCCC;
   --color-muted: #666666;
@@ -96,6 +98,17 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text);
   background-color: var(--color-bg);
+}
+
+/* Selection highlight — desaturated lemon-pastel yellow */
+::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+::-moz-selection {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
 }
 
 img {
@@ -359,7 +372,7 @@ hr {
   color: var(--color-muted);
 }
 
-/* Section headers — bold, assertive, not whispered */
+/* Section headers — red text in a yellow tab */
 .section-header {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -368,8 +381,10 @@ hr {
   letter-spacing: 0.12em;
   color: var(--issue-accent);
   margin-bottom: var(--space-md);
-  padding-bottom: var(--space-xs);
-  border-bottom: var(--rule-weight-medium) solid var(--color-rule);
+  padding: 0.25em 0.6em;
+  background-color: var(--color-secondary);
+  display: inline-block;
+  border: none;
 }
 
 /* Sunburst */
@@ -595,6 +610,11 @@ hr {
   letter-spacing: 0.05em;
   margin-bottom: 0;
   margin-top: 0;
+  background-color: var(--color-secondary);
+  padding: 0.05em 0.15em;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .coming-soon {
