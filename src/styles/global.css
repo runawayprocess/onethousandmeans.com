@@ -384,7 +384,7 @@ hr {
   color: var(--color-muted);
 }
 
-/* Section headers — red text on full-width yellow bar with rounded edges + dashed bottom rule */
+/* Section headers — red text on full-width yellow bar, dashed border all around */
 .section-header {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -396,9 +396,8 @@ hr {
   padding: 0.35em 0.8em;
   background-color: var(--color-secondary);
   display: block;
-  border: none;
+  border: 2px dashed var(--color-rule);
   border-radius: 6px;
-  border-bottom: 2px dashed var(--color-rule);
 }
 
 /* Sunburst */
@@ -415,22 +414,16 @@ hr {
   padding-top: 0;
 }
 
-/* Thick maroon accent bar at the very top of the page */
+/* Thick accent bar at the very top of the page */
 .header-bar {
   height: 8px;
   background-color: var(--issue-accent);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: var(--space-sm);
-}
-
-.masthead {
-  flex-shrink: 0;
+/* Logotype sits above the tagline/nav row */
+.header-logo {
+  margin-bottom: 0.5rem;
 }
 
 .logo-link {
@@ -444,12 +437,20 @@ hr {
   height: auto;
 }
 
+/* Tagline + nav on the same row, aligned baseline */
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-sm);
+}
+
 .tagline {
   font-family: var(--font-body);
   font-size: var(--text-xs);
   color: var(--color-muted);
   letter-spacing: 0.12em;
-  margin-top: 0.25rem;
+  margin: 0;
 }
 
 .site-nav {
@@ -460,8 +461,6 @@ hr {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  align-items: flex-end;
-  padding-bottom: 0.25rem;
 }
 
 .site-nav a {
@@ -602,7 +601,7 @@ hr {
   display: flex;
   align-items: baseline;
   gap: 0.15em;
-  font-size: var(--text-5xl);
+  font-size: clamp(3rem, 6vw, 5.5rem);
 }
 
 .issue-badge-svg {
@@ -637,6 +636,12 @@ hr {
 
 .toc-section {
   margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--color-rule);
+}
+
+.toc-section:last-child {
+  border-bottom: none;
 }
 
 
